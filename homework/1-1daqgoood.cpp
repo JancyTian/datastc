@@ -15,8 +15,16 @@ int main()
 
     auto result = findmax(a, 0, n - 1);
 
-    cout << result[0] << endl;
-    cout << result[1] << " " << result[2] << endl;
+    if (result[0] < 0)
+    {
+        cout << 0 << endl;
+        cout << -1 << " " << -1 << endl;
+    }
+    else
+    {
+        cout << result[0] << endl;
+        cout << result[1] << " " << result[2] << endl;
+    }
 }
 
 vector<int> findmax(const vector<int> &a, int left, int right)
@@ -35,7 +43,7 @@ vector<int> findmax(const vector<int> &a, int left, int right)
     int left_sum_max = a[mid];
     int current_sum = a[mid];
     int left_index = mid;
-    for (int i = mid - 1; i >= 0; --i)
+    for (int i = mid - 1; i >= left; --i)
     {
         current_sum += a[i];
         if (current_sum > left_sum_max)
@@ -47,7 +55,7 @@ vector<int> findmax(const vector<int> &a, int left, int right)
     int right_sum_max = a[mid + 1];
     current_sum = a[mid + 1];
     int right_index = mid + 1;
-    for (int i = mid + 2; i < right; ++i)
+    for (int i = mid + 2; i <= right; ++i)
     {
         current_sum += a[i];
         if (current_sum > right_sum_max)
@@ -58,12 +66,12 @@ vector<int> findmax(const vector<int> &a, int left, int right)
     }
 
     middle = right_sum_max + left_sum_max;
-    if (middle > left_result[0] && middle > right_result[0])
+    if (middle >= left_result[0] && middle >= right_result[0])
     {
         vector<int> tmp = {middle, left_index, right_index};
         return tmp;
     }
-    else if (left_result[0] > right_result[0])
+    else if (left_result[0] >= right_result[0])
     {
         return left_result;
     }
