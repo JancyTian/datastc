@@ -31,7 +31,7 @@ vector<int> findmax(int n, vector<int> a)
         vector<int> b(a.begin(), a.begin() + midp);
         left = findmax(midp, b);
         vector<int> c(a.begin() + midp, a.end());
-        right = findmax(midp, c);
+        right = findmax(n - midp, c);
     }
 
     if (n == 1)
