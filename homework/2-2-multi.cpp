@@ -24,8 +24,6 @@ int main()
         poly2[ex] = value;
     }
     map<int, int, greater<int>> result;
-    auto it1 = poly1.begin();
-    auto it2 = poly2.begin();
     for (const auto &pair1 : poly1)
     {
         for (const auto &pair2 : poly2)
@@ -46,6 +44,11 @@ int main()
                 }
             }
         }
+    }
+    if (result.empty())
+    {
+        cout << 0 << " " << 0 << endl;
+        return 0;
     }
     bool is_first = true;
     for (const auto &pair : result)
