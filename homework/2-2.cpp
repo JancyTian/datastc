@@ -35,7 +35,11 @@ int main()
         }
         else if (it1->first == it2->first)
         {
-            result[it1->first] = it1->second + it2->second;
+            float tmp = it1->second + it2->second;
+            if (abs(tmp) > 1e-6)
+            {
+                result[it1->first] = tmp;
+            }
             it1++;
             it2++;
         }
