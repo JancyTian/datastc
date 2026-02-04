@@ -79,15 +79,6 @@ void LinkedList<ElemType>::K_Reverse(int k)
         }
         first->next_ = x;
         preend->next_ = tmp;
-        preend = tmp;
+        preend = first;
     }
-    for (int j = 0; j < left; ++j)
-    {
-        x->next_ = tmp;
-        tmp = x;
-        x = x->next_;
-    }
-    first->next_ = x;
-    preend->next_ = tmp;
-    preend = tmp;
 }
