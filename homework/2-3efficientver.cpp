@@ -82,3 +82,35 @@ void LinkedList<ElemType>::K_Reverse(int k)
         preend = first;
     }
 }
+// the following one is right
+void LinkedList<ElemType>::K_Reverse(int k)
+{
+    if (k <= 1 || length_ < 2)
+    {
+        return;
+    }
+
+    p pre = head_;
+    int remaining = length_;
+    while (remaining >= k)
+    {
+        p curr = pre->next_;
+        p next = curr->next_;
+        for (int i = 1; i < k; ++i)
+        {
+            curr->next_ = next->next_;
+            next->next_ = pre->next_;
+            pre->next_ = next;
+            next = curr->next_;
+        }
+        pre = curr;
+        remaining -= k;
+    }
+
+    p tail = head_;
+    while (tail->next_ != nullptr)
+    {
+        tail = tail->next_;
+    }
+    tail_ = tail;
+}
