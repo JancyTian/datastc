@@ -107,7 +107,7 @@ void backstack(ptr root)
             cout << top->data << endl;
             stk.pop();
             prev = top;
-        }
+        } // 很重要，需要知道右边处理过没有
         else
         {
             current = top->right;
