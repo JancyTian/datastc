@@ -59,7 +59,9 @@ int judge(ptr root1, ptr root2)
     {
         return 1;
     }
+    // 这些情况是不用递归，直接可以返回的（肯定不对；一定对（到底了））
     return (judge(root1->left, root2->left) && judge(root1->right, root2->right) || judge(root1->right, root2->left) && judge(root1->left, root2->right));
+    // 这些情况是需要递归解决的：根节点相等，要判断他们的左孩子右孩子。用复杂的嵌套判断来return
 }
 
 int main()
