@@ -114,9 +114,30 @@ void backstack(ptr root)
         }
     }
 }
+
+void useq(ptr root)
+{
+    queue<ptr> q;
+    ptr cur = root;
+    q.push(cur);
+    while (!q.empty())
+    {
+        cur = q.front();
+        cout << cur->data << endl;
+        if (cur->left != nullptr)
+        {
+            q.push(cur->left);
+        }
+        if (cur->right != nullptr)
+        {
+            q.push(cur->right);
+        }
+        q.pop();
+    }
+}
 int main()
 {
     auto tree = createTree(3);
-    backstack(tree);
+    useq(tree);
     return 0;
 }
