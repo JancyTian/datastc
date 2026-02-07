@@ -9,26 +9,28 @@ struct Node
 };
 void create(int n, vector<ptr> &tree)
 {
-    vector<char> lch(n, '-');
-    vector<char> rch(n, '-');
 
     for (int i = 0; i < n; i++)
     {
         tree[i] = new (struct Node);
-        tree[i]->left = nullptr;
-        tree[i]->right = nullptr;
-        cin >> tree[i]->data >> lch[i] >> rch[i];
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        if (lch[i] != '-')
+        char l = 0;
+        char r = 0;
+        cin >> tree[i]->data >> l >> r;
+        if (l != '-')
         {
-            tree[i]->left = tree[lch[i] - '0'];
+            tree[i]->left = tree[l - '0'];
         }
-        if (rch[i] != '-')
+        else
         {
-            tree[i]->right = tree[rch[i] - '0'];
+            tree[i]->left = nullptr;
+        }
+        if (r != '-')
+        {
+            tree[i]->right = tree[r - '0'];
+        }
+        else
+        {
+            tree[i]->right = nullptr;
         }
     }
 }
@@ -53,6 +55,7 @@ int main()
     {
         auto it = find_if(tree2.begin(), tree2.end(), [=](ptr tmp)
                           { return tmp->data == tree1[i]->data; });
+        // cout << (*it)->data << tree1[i]->data << endl;
         if (it == tree2.end())
         {
             cout << "No" << endl;
@@ -88,11 +91,12 @@ int main()
                 cnt++;
             }
         }
+        // cout << cnt << endl;
         if (cnt != 1)
         {
 
             cout << "No" << endl;
-            return 0;
+            // return 0;
         }
     }
     cout << "Yes" << endl;
