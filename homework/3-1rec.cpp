@@ -42,7 +42,7 @@ ptr create(int n, vector<ptr> &tree)
     }
     for (int j = 0; j < n; j++)
     {
-        if (j == 0)
+        if (parent[j] == 0)
         {
             return tree[j];
         }
@@ -51,17 +51,15 @@ ptr create(int n, vector<ptr> &tree)
 }
 int judge(ptr root1, ptr root2)
 {
-    return (judge(root1->left, root2->left) && judge(root1->right, root2->right) || judge(root1->right, root2->left) && judge(root1->left, root2->right));
+    if ((root1 != nullptr && root2 == nullptr || root1 == nullptr && root2 != nullptr) || root1 != nullptr && root2 != nullptr && root1->data != root2->data)
+    {
+        return 0;
+    }
     if (root1 == nullptr && root2 == nullptr)
     {
-        return 0;
+        return 1;
     }
-    else if (root1 != nullptr && root2 != nullptr && root1->data == root2->data)
-    {
-        return 0;
-    }
-    return 1;
-    // return (judge(root1->left, root2->left) && judge(root1->right, root2->right) || judge(root1->right, root2->left) && judge(root1->left, root2->right));
+    return (judge(root1->left, root2->left) && judge(root1->right, root2->right) || judge(root1->right, root2->left) && judge(root1->left, root2->right));
 }
 
 int main()
@@ -80,14 +78,8 @@ int main()
         cout << "No" << endl;
         return 0;
     }
-    if (root1 != nullptr && root2 != nullptr)
-        if (root1->data != root2->data)
-        {
-            cout << "No" << endl;
-            return 0;
-        }
-    int n = judge(root1, root2);
-    if (n == 1)
+    int k = judge(root1, root2);
+    if (k == 0)
     {
 
         cout << "No" << endl;
