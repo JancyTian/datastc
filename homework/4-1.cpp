@@ -64,20 +64,23 @@ int main()
         vector<ptr> tree(l + 1);
         for (int i = 0; i < l + 1; ++i)
         {
-            tree[i] = new (struct Node);
+            tree[i] = nullptr;
             for (int j = 0; j < n; ++j)
             {
                 int tmp;
                 cin >> tmp;
-                insert2(tree[i], tmp);
+                tree[i] = insert2(tree[i], tmp);
             }
         }
-        int dif = 0;
+        int dif = true;
         for (int i = 0; i < l; i++)
         {
-            dif += sametree(tree[0], tree[i + 1]);
+            if (!sametree(tree[0], tree[i + 1]))
+            {
+                dif = false;
+            }
         }
-        if (dif == 0)
+        if (dif == true)
         {
             cout << "Yes" << endl;
         }
