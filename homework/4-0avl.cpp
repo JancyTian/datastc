@@ -175,5 +175,10 @@ ptr erase(ptr root, int x)
             delete (tmp);
         }
     }
+    newheight(root);
+
+    adjust(root);
+
+    newheight(root);
     return root;
 }
