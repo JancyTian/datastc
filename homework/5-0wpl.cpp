@@ -1,5 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+typedef struct Node *node;
+struct Node
+{
+    int weight;
+    node left;
+    node right;
+};
 void createminheap(vector<int> &htree, int n)
 {
     int i = n / 2;
@@ -77,33 +85,16 @@ void add(vector<int> &htree, int x)
 
 void createhufftree(vector<int> &htree)
 {
-    // for (auto &ele : htree)
-    // {
-    //     cout << ele << endl;
-    // }
+    int wpl = 0;
     while (htree.size() > 2)
     {
         int x1 = erase(htree);
-        for (auto &ele : htree)
-        {
-            cout << ele << " ";
-        }
-        cout << endl;
         int x2 = erase(htree);
-        for (auto &ele : htree)
-        {
-            cout << ele << " ";
-        }
-        cout << endl;
         int x3 = x1 + x2;
         add(htree, x3);
-        for (auto &ele : htree)
-        {
-            cout << ele << " ";
-        }
-        cout << endl;
+        wpl += x3;
     }
-    cout << htree[1] << endl;
+    cout << wpl << endl;
 }
 int main()
 {
