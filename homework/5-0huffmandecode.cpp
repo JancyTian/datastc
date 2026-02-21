@@ -31,7 +31,7 @@ node buildtree(priority_queue<node, vector<node>, cmp> &htree)
         root->left = n1;
         root->right = n2;
         htree.push(root);
-    } while (htree.size() >= 2);
+    } while (htree.size() > 1);
 
     return htree.top();
 }
@@ -40,13 +40,13 @@ void encode(node root, string code, map<string, char> &codemap)
 {
     if (root->left != nullptr)
     {
-        code = code + "0";
-        encode(root->left, code, codemap);
+        // code = code + "0";
+        encode(root->left, code + "0", codemap);
     }
     if (root->right != nullptr)
     {
-        code = code + "1";
-        encode(root->right, code, codemap);
+        // code = code + "1";
+        encode(root->right, code + "1", codemap);
     }
     if (root->right == nullptr && root->left == nullptr)
     {
